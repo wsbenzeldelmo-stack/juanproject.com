@@ -57,7 +57,7 @@
         letter-spacing: -0.022em;
       }
       h1 {
-        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        font-size: clamp(2rem, 4vw, 4.2rem);
         line-height: 1.05;
         margin-bottom: 0.75rem;
         font-weight: 800;
@@ -168,7 +168,6 @@
         align-items: center;
       }
 
-      /* Top Logo Button */
       .logo-top-btn {
         display: inline-flex;
         align-items: center;
@@ -231,7 +230,7 @@
         stroke: var(--white);
       }
 
-      /* Entrance Keyframes */
+      /* Entrance Animations */
       @keyframes flowyUp {
         0% {
           opacity: 0;
@@ -243,7 +242,6 @@
         }
       }
 
-      /* Float-In Sequential Animation for Hero Boxes */
       @keyframes floatInSequence {
         0% {
           opacity: 0;
@@ -259,24 +257,45 @@
         }
       }
 
-      /* Hero Section */
+      /* Full Viewport Landing Hero Section */
       .hero {
-        padding: 9rem 0 4.5rem 0;
+        min-height: 100vh;
+        padding: 7.5rem 0 3rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         text-align: center;
+        box-sizing: border-box;
       }
 
-      .hero h1 {
-        max-width: 760px;
+      /* Interactive Header Text - Unified Hover Effect */
+      .hero h1.interactive-title {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        max-width: 100%;
         margin: 0 auto 0.85rem auto;
+        padding: 0.1em 0.35em;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: var(--transition-smooth);
         opacity: 0;
         animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+      }
+
+      .hero h1.interactive-title:hover {
+        color: var(--mint);
+        background: rgba(47, 242, 158, 0.08);
+        transform: translateY(-6px) scale(1.04);
+        text-shadow: 0 10px 25px rgba(47, 242, 158, 0.35);
       }
 
       .hero-subtitle {
         font-size: clamp(1.05rem, 1.8vw, 1.2rem);
         color: var(--gray-medium);
         max-width: 620px;
-        margin: 0 auto 3.5rem auto;
+        margin: 0 auto 2.5rem auto;
         line-height: 1.45;
         font-weight: 400;
         letter-spacing: -0.01em;
@@ -296,12 +315,13 @@
         justify-items: center;
       }
 
-      /* Hero Equal Sided Boxes (1:1 Aspect Ratio) */
+      /* Hero 3 Stat Boxes - Light Gray Base, Dark Text, Mint Hover */
       .stat-item {
         width: 100%;
         aspect-ratio: 1 / 1;
         padding: 1.5rem;
         background: var(--gray-light);
+        color: var(--black);
         border: 1px solid var(--border);
         border-radius: var(--radius-xl);
         text-align: center;
@@ -309,7 +329,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: var(--black);
         opacity: 0;
         transition: var(--transition-smooth);
         position: relative;
@@ -331,14 +350,6 @@
           forwards;
       }
 
-      /* Interactive Card Hover Animation */
-      .stat-item:hover {
-        transform: translateY(-8px) scale(1.02);
-        background: var(--white);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        border-color: rgba(47, 242, 158, 0.7);
-      }
-
       .stat-value {
         font-size: clamp(2.8rem, 5vw, 4.2rem);
         font-weight: 800;
@@ -349,12 +360,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: var(--transition-smooth);
       }
 
-      /* Neutral Plus Icon Color */
       .stat-plus {
-        color: var(--black);
+        color: var(--mint);
         margin-left: 2px;
+        transition: var(--transition-smooth);
       }
 
       .stat-label {
@@ -363,9 +375,196 @@
         text-transform: uppercase;
         letter-spacing: 1.2px;
         color: var(--gray-medium);
+        transition: var(--transition-smooth);
       }
 
-      /* Buttons */
+      /* Interactive Box Hover Effect */
+      .stat-item:hover {
+        transform: translateY(-8px) scale(1.02);
+        background: #0d0d0e;
+        box-shadow: 0 20px 45px rgba(47, 242, 158, 0.18);
+        border-color: var(--mint);
+      }
+
+      .stat-item:hover .stat-value {
+        color: var(--mint);
+      }
+
+      .stat-item:hover .stat-label {
+        color: var(--white);
+      }
+
+      /* Hero Rolling Logos Ticker */
+      .hero-logos-ticker {
+        margin-top: 3rem;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 0.75rem 0;
+        opacity: 0;
+        animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        -webkit-mask-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 1) 12%,
+          rgba(0, 0, 0, 1) 88%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 1) 12%,
+          rgba(0, 0, 0, 1) 88%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      .ticker-track {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        width: max-content;
+        animation: rollingSlowPhase 85s linear infinite;
+      }
+
+      .hero-logos-ticker:hover .ticker-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes rollingSlowPhase {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* 16:9 Ratio Ticker Item Box */
+      .ticker-logo-item {
+        width: 120px;
+        aspect-ratio: 16 / 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: var(--gray-light);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 0.4rem;
+        transition: var(--transition-fast);
+        overflow: hidden;
+      }
+
+      .ticker-logo-item img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+        opacity: 0.7;
+        filter: grayscale(100%);
+        transition: var(--transition-fast);
+      }
+
+      .ticker-logo-item:hover {
+        border-color: var(--mint);
+        background: var(--white);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      }
+
+      .ticker-logo-item:hover img {
+        opacity: 1;
+        filter: grayscale(0%);
+      }
+
+      .logo-fallback {
+        font-weight: 800;
+        font-size: 0.72rem;
+        letter-spacing: 0.8px;
+        color: var(--gray-dark);
+      }
+
+      /* Hero Actions Side-by-Side Centered */
+      .hero-actions {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.85rem;
+        width: 100%;
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0;
+        animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
+      }
+
+      .btn-hero-primary {
+        background: var(--black);
+        color: var(--white);
+        border: 1px solid var(--black);
+        padding: 0.75rem 1.6rem;
+        width: auto;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.88rem;
+        border-radius: var(--radius-md);
+        transition: var(--transition-smooth);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+
+      .btn-hero-primary svg {
+        width: 15px;
+        height: 15px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.2;
+        transition: transform 0.25s ease;
+      }
+
+      .btn-hero-primary:hover {
+        background: var(--mint);
+        color: var(--black);
+        border-color: var(--mint);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(47, 242, 158, 0.3);
+      }
+
+      .btn-hero-primary:hover svg {
+        transform: translateX(3px);
+      }
+
+      .btn-hero-secondary {
+        background: var(--gray-light);
+        color: var(--black);
+        border: 1px solid var(--border);
+        padding: 0.75rem 1.6rem;
+        width: auto;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.88rem;
+        border-radius: var(--radius-md);
+        transition: var(--transition-smooth);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+
+      .btn-hero-secondary:hover {
+        background: var(--white);
+        border-color: var(--black);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      /* General Buttons */
       .btn {
         width: 100%;
         padding: 0.85rem;
@@ -451,7 +650,7 @@
       .pkg-discount {
         font-size: 0.82rem;
         color: var(--gray-medium);
-        text-decoration: line-through;
+        text-decoration: none;
         margin-bottom: 0.4rem;
       }
 
@@ -613,7 +812,7 @@
         transform: scale(1.1);
       }
 
-      /* Payment Section & Expanded Payment Card Deck */
+      /* Payment Section & Card Deck */
       .payment-section {
         text-align: center;
         padding: 5.5rem 0;
@@ -1002,7 +1201,7 @@
         background: var(--gray-dark);
         color: var(--white);
         transform: rotateY(180deg);
-        justify-content: space-between;
+        justify-between;
         border-color: var(--border-dark);
       }
 
@@ -1217,21 +1416,26 @@
         stroke-linejoin: round;
       }
 
-      /* Responsive Styles with Hero Mobile Margins & Square Box Formatting */
+      /* Responsive Adjustments */
       @media (max-width: 768px) {
         .hero {
-          padding-top: 7rem;
+          padding-top: 6rem;
+          min-height: auto;
         }
         .stats-grid {
           grid-template-columns: 1fr;
-          gap: 1.5rem;
-          padding: 0 1.5rem; /* Margins on left and right in mobile view */
+          gap: 1.25rem;
+          padding: 0 1rem;
         }
         .stat-item {
-          aspect-ratio: 1 / 1; /* Box with equal sides */
+          aspect-ratio: 1 / 1;
           width: 100%;
-          max-width: 300px;
+          max-width: 280px;
           margin: 0 auto;
+        }
+        .hero-actions {
+          justify-content: center;
+          gap: 0.6rem;
         }
         .cards-deck-container {
           max-width: 100%;
@@ -1243,6 +1447,19 @@
         td,
         th {
           padding: 0.8rem 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-actions {
+          flex-direction: row;
+          justify-content: center;
+          width: 100%;
+        }
+        .btn-hero-primary,
+        .btn-hero-secondary {
+          padding: 0.65rem 1rem;
+          font-size: 0.82rem;
         }
       }
     </style>
@@ -1271,15 +1488,17 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Full Landing Hero Section -->
     <section class="hero container">
-      <h1>Crafting Visual Excellence</h1>
+      <!-- Unified Interactive Header -->
+      <h1 class="interactive-title">Crafting Visual Excellence</h1>
+
       <p class="hero-subtitle">
         Minimalist, high-end broadcast materials and digital services designed
         for modern creators and networks.
       </p>
 
-      <!-- Hero Blocks (Equal-Sided Boxes with Sequential Float-In Animation) -->
+      <!-- Hero 3 Equal-Sided Stat Boxes -->
       <div class="stats-grid">
         <div class="stat-item domino-1">
           <div class="stat-value">
@@ -1304,6 +1523,379 @@
           </div>
           <div class="stat-label">Deliverables</div>
         </div>
+      </div>
+
+      <!-- Hero 16 Logo Placeholders (16:9 Marquee Ticker) -->
+      <div class="hero-logos-ticker">
+        <div class="ticker-track">
+          <!-- Primary 16 Logo Loop -->
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO1.png"
+              alt="LOGO1"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 01</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO2.png"
+              alt="LOGO2"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 02</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO3.png"
+              alt="LOGO3"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 03</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO4.png"
+              alt="LOGO4"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 04</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO5.png"
+              alt="LOGO5"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 05</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO6.png"
+              alt="LOGO6"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 06</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO7.png"
+              alt="LOGO7"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 07</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO8.png"
+              alt="LOGO8"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 08</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO9.png"
+              alt="LOGO9"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 09</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO10.png"
+              alt="LOGO10"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 10</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO11.png"
+              alt="LOGO11"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 11</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO12.png"
+              alt="LOGO12"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 12</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO13.png"
+              alt="LOGO13"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 13</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO14.png"
+              alt="LOGO14"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 14</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO15.png"
+              alt="LOGO15"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 15</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO16.png"
+              alt="LOGO16"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 16</span>';
+              "
+            />
+          </div>
+
+          <!-- Duplicated Set for Seamless Scroll -->
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO1.png"
+              alt="LOGO1"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 01</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO2.png"
+              alt="LOGO2"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 02</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO3.png"
+              alt="LOGO3"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 03</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO4.png"
+              alt="LOGO4"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 04</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO5.png"
+              alt="LOGO5"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 05</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO6.png"
+              alt="LOGO6"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 06</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO7.png"
+              alt="LOGO7"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 07</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO8.png"
+              alt="LOGO8"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 08</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO9.png"
+              alt="LOGO9"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 09</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO10.png"
+              alt="LOGO10"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 10</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO11.png"
+              alt="LOGO11"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 11</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO12.png"
+              alt="LOGO12"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 12</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO13.png"
+              alt="LOGO13"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 13</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO14.png"
+              alt="LOGO14"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 14</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO15.png"
+              alt="LOGO15"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 15</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO16.png"
+              alt="LOGO16"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 16</span>';
+              "
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Centered Side-by-Side Dual Action Buttons -->
+      <div class="hero-actions">
+        <a href="#packages" class="btn-hero-secondary">Explore Packages</a>
+        <a href="portfolio.html" class="btn-hero-primary">
+          See Portfolio
+          <svg viewBox="0 0 24 24">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
       </div>
     </section>
 
@@ -1957,11 +2549,10 @@
       </button>
     </div>
 
-    <!-- Domino Script & Interactive UI Handlers -->
+    <!-- JavaScript Application Logic -->
     <script>
       let cart = [];
 
-      // Sequential Domino Effect Counter Function
       function triggerDominoNumbers(e) {
         if (e) e.preventDefault();
         const counters = document.querySelectorAll(".counter");
@@ -1969,8 +2560,6 @@
         counters.forEach((counter, idx) => {
           counter.innerText = "0";
           const target = parseInt(counter.getAttribute("data-target"));
-
-          // Domino staggered delay sequence (0ms, 250ms, 500ms)
           const delay = idx * 250;
 
           setTimeout(() => {
@@ -1993,7 +2582,6 @@
         }
       }
 
-      // Run Domino counting animation on initial page load
       window.addEventListener("DOMContentLoaded", () => {
         triggerDominoNumbers(null);
       });
@@ -2121,7 +2709,7 @@
         }, 300);
       }
 
-      /* Payment Deck Swipe & Animation */
+      /* Payment Deck Interaction */
       const deck = document.getElementById("cardsDeck");
       let touchStartX = 0;
       let touchEndX = 0;
