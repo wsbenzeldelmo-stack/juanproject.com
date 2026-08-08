@@ -268,27 +268,40 @@
         box-sizing: border-box;
       }
 
-      /* Interactive Header Text - Unified Hover Effect */
-      .hero h1.interactive-title {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        white-space: nowrap;
+      /* Hero Title */
+      .hero h1.hero-title {
+        display: block;
+        text-align: center;
+        white-space: normal;
         max-width: 100%;
-        margin: 0 auto 0.85rem auto;
-        padding: 0.1em 0.35em;
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        transition: var(--transition-smooth);
+        margin: 0 auto 1rem auto;
+        font-size: clamp(2.6rem, 6vw, 4.4rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        color: var(--black);
         opacity: 0;
         animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
       }
 
-      .hero h1.interactive-title:hover {
-        color: var(--mint);
-        background: rgba(47, 242, 158, 0.08);
-        transform: translateY(-6px) scale(1.04);
-        text-shadow: 0 10px 25px rgba(47, 242, 158, 0.35);
+      .hero h1.hero-title br.mobile-break {
+        display: none;
+      }
+
+      @media (max-width: 640px) {
+        .hero h1.hero-title {
+          font-size: clamp(2.1rem, 9vw, 3.25rem);
+        }
+        .hero h1.hero-title br.mobile-break {
+          display: block;
+          content: "";
+          line-height: 0;
+        }
+        .hero-subtitle {
+          font-size: 0.95rem;
+          max-width: 88%;
+          margin-bottom: 2rem;
+        }
       }
 
       .hero-subtitle {
@@ -351,7 +364,7 @@
       }
 
       .stat-value {
-        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        font-size: clamp(3.4rem, 6vw, 5.2rem);
         font-weight: 800;
         color: var(--black);
         margin-bottom: 0.2rem;
@@ -443,26 +456,26 @@
       /* 16:9 Ratio Ticker Item Box */
       .ticker-logo-item {
         width: 120px;
-        aspect-ratio: 16 / 9;
+        height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        background: var(--gray-light);
-        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.92);
+        border: none;
         border-radius: var(--radius-md);
-        padding: 0.4rem;
+        padding: 0.45rem;
         transition: var(--transition-fast);
         overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
       }
 
       .ticker-logo-item img {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 16 / 9;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: contain;
-        opacity: 0.7;
-        filter: grayscale(100%);
+        opacity: 0.95;
+        filter: none;
         transition: var(--transition-fast);
       }
 
@@ -1433,6 +1446,12 @@
           max-width: 280px;
           margin: 0 auto;
         }
+        .stat-value {
+          font-size: clamp(3.2rem, 8vw, 4.8rem);
+        }
+        .stat-label {
+          font-size: 0.95rem;
+        }
         .hero-actions {
           justify-content: center;
           gap: 0.6rem;
@@ -1490,8 +1509,9 @@
 
     <!-- Full Landing Hero Section -->
     <section class="hero container">
-      <!-- Unified Interactive Header -->
-      <h1 class="interactive-title">Crafting Visual Excellence</h1>
+      <h1 class="hero-title">
+        Crafting Visual<br class="mobile-break" /> Excellence
+      </h1>
 
       <p class="hero-subtitle">
         Minimalist, high-end broadcast materials and digital services designed
@@ -1525,10 +1545,10 @@
         </div>
       </div>
 
-      <!-- Hero 16 Logo Placeholders (16:9 Marquee Ticker) -->
+      <!-- Hero 12 Logo Placeholders (16:9 Marquee Ticker) -->
       <div class="hero-logos-ticker">
         <div class="ticker-track">
-          <!-- Primary 16 Logo Loop -->
+          <!-- Primary 12 Logo Loop -->
           <div class="ticker-logo-item">
             <img
               src="assets/logos/LOGO1.png"
@@ -1661,51 +1681,6 @@
               "
             />
           </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO13.png"
-              alt="LOGO13"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 13</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO14.png"
-              alt="LOGO14"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 14</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO15.png"
-              alt="LOGO15"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 15</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO16.png"
-              alt="LOGO16"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 16</span>';
-              "
-            />
-          </div>
-
           <!-- Duplicated Set for Seamless Scroll -->
           <div class="ticker-logo-item">
             <img
@@ -1836,50 +1811,6 @@
                 this.onerror = null;
                 this.parentNode.innerHTML =
                   '<span class=\'logo-fallback\'>LOGO 12</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO13.png"
-              alt="LOGO13"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 13</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO14.png"
-              alt="LOGO14"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 14</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO15.png"
-              alt="LOGO15"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 15</span>';
-              "
-            />
-          </div>
-          <div class="ticker-logo-item">
-            <img
-              src="assets/logos/LOGO16.png"
-              alt="LOGO16"
-              onerror="
-                this.onerror = null;
-                this.parentNode.innerHTML =
-                  '<span class=\'logo-fallback\'>LOGO 16</span>';
               "
             />
           </div>

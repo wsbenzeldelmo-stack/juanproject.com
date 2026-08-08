@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual and Motion Showcase</title>
+    <style>
+      :root {
+        --mint: #2ff29e;
+        --mint-dark: #25d689;
+        --black: #000000;
+        --white: #ffffff;
+        --bg-main: #f5f5f7;
+        --bg-alt: #ffffff;
+        --card-bg: #ffffff;
+        --gray-text: #86868b;
+        --dark-text: #1d1d1f;
+        --border: #e5e5ea;
+        --radius-xl: 20px;
+        --radius-lg: 14px;
+        --radius-pill: 999px;
+        --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+          "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        background-color: var(--bg-main);
+        color: var(--dark-text);
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Alternating Section Backgrounds */
+      section {
+        padding: 4.5rem 0;
+      }
+
+      section.bg-alt {
+        background-color: var(--bg-alt);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* Header Navigation */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        padding: 1rem 0;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-btn {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--black);
+        text-decoration: none;
+        letter-spacing: -0.03em;
+        transition: var(--transition);
+      }
+
+      .logo-btn:hover {
+        color: var(--mint-dark);
+      }
+
+      .btn-back {
+        background: var(--black);
+        color: var(--white);
+        padding: 0.5rem 1.2rem;
+        border-radius: var(--radius-pill);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: var(--transition);
+      }
+
+      .btn-back:hover {
+        background: var(--mint-dark);
+        color: var(--black);
+      }
+
+      /* Section Headers */
+      .section-header-wrap {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        padding-bottom: 0.85rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--black);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .section-title::before {
+        content: "";
+        display: inline-block;
+        width: 4px;
+        height: 1.4rem;
+        background: var(--mint-dark);
+        border-radius: 2px;
+      }
+
+      /* Heart Button Accent */
+      .heart-btn {
+        position: absolute;
+        top: 0.85rem;
+        right: 0.85rem;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: var(--transition);
+        color: var(--black);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .heart-btn:hover {
+        transform: scale(1.08);
+        background: var(--white);
+      }
+
+      .heart-btn.liked {
+        color: var(--mint-dark);
+        background: var(--white);
+        border-color: rgba(37, 214, 137, 0.5);
+      }
+
+      .heart-btn.liked svg {
+        fill: var(--mint-dark);
+        stroke: var(--mint-dark);
+      }
+
+      /* Hero Title Section */
+      .hero-section {
+        padding-top: 8rem;
+        padding-bottom: 2.5rem;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        color: var(--black);
+        white-space: nowrap;
+      }
+
+      .hero-title-break {
+        display: inline;
+      }
+
+      /* Carousel Base */
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      .carousel-container {
+        display: flex;
+        gap: 1.25rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .carousel-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .poster-card {
+        flex: 0 0 calc(33.333% - 0.85rem);
+        min-width: 260px;
+        scroll-snap-align: start;
+        position: relative;
+        aspect-ratio: 2 / 3;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        transition: var(--transition);
+      }
+
+      .poster-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      .poster-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Title Cards Grid */
+      .title-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .title-card-item {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        transition: var(--transition);
+      }
+
+      .title-card-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      .title-card-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Motion Videos */
+      .videos-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .video-item {
+        background: var(--card-bg);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      }
+
+      .video-frame-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: var(--black);
+        padding: 0.6rem;
+        overflow: hidden;
+      }
+
+      .video-frame-container video {
+        width: 110%;
+        height: 110%;
+        object-fit: cover;
+        transform: scale(1.04);
+      }
+
+      .video-meta-bar {
+        padding: 1.2rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--white);
+        border-top: 1px solid var(--border);
+      }
+
+      .video-title-text {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--black);
+        letter-spacing: -0.02em;
+      }
+
+      .video-heart-btn {
+        position: relative;
+        top: auto;
+        right: auto;
+        box-shadow: none;
+      }
+
+      /* Controls for Carousel */
+      .carousel-ctrl-bar {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .ctrl-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 1px solid var(--border);
+        color: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .ctrl-btn:hover {
+        background: var(--black);
+        color: var(--white);
+        border-color: var(--black);
+      }
+
+      /* SVG Icons */
+      svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--black);
+        color: var(--gray-text);
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        font-size: 0.85rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .poster-card {
+          flex: 0 0 calc(60% - 0.85rem);
+        }
+
+        .title-cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-section {
+          padding-top: 6.5rem;
+        }
+
+        .hero-title {
+          line-height: 1.05;
+          white-space: normal;
+        }
+
+        .hero-title-break {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header>
+      <div class="container nav-content">
+        <a href="index.html" class="logo-btn">JUAN PROJECT</a>
+        <a href="index.html" class="btn-back">
+          <svg viewBox="0 0 24 24">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Main Page
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Title Section -->
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="hero-title">
+          Motion and Visual Showcase
+        </h1>
+      </div>
+    </section>
+
+    <!-- Section 1: Posters -->
+    <section class="bg-alt">
+      <div class="container">
+        <div class="section-header-wrap">
+          <h2 class="section-title">Posters</h2>
+          <div class="carousel-ctrl-bar">
+            <button
+              class="ctrl-btn"
+              onclick="scrollCarousel('posterCarousel', -300)"
+              title="Previous"
+            >
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button
+              class="ctrl-btn"
+              onclick="scrollCarousel('posterCarousel', 300)"
+              title="Next"
+            >
+              <svg viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel-wrapper">
+          <div class="carousel-container" id="posterCarousel">
+            <div class="poster-card">
+              <button
+                class="heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+              <img
+                src="https://lh3.googleusercontent.com/d/1gyiLfx566gKXzN05ASRi9sEuC5OPHRvv"
+                alt="Poster Image"
+              />
+            </div>
+
+            <div class="poster-card">
+              <button
+                class="heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+              <img
+                src="https://lh3.googleusercontent.com/d/12g1HO0v1j1SehKIuxduTNjdYDJqyG0ke"
+                alt="Poster Image"
+              />
+            </div>
+
+            <div class="poster-card">
+              <button
+                class="heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+              <img
+                src="https://lh3.googleusercontent.com/d/1qZfzPT4_wufW10_fRbQef209lHsODqLB"
+                alt="Poster Image"
+              />
+            </div>
+
+            <div class="poster-card">
+              <button
+                class="heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+              <img
+                src="https://lh3.googleusercontent.com/d/1Vrwu5gx7ACb0L6XjGlEc3gfH9oshVJxb"
+                alt="Poster Image"
+              />
+            </div>
+
+            <div class="poster-card">
+              <button
+                class="heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+              <img
+                src="https://lh3.googleusercontent.com/d/158OT5vaG-xG5jRV5vTiaEsQfEw8Y9HP6"
+                alt="Poster Image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Title Cards -->
+    <section>
+      <div class="container">
+        <div class="section-header-wrap">
+          <h2 class="section-title">Title Cards</h2>
+        </div>
+
+        <div class="title-cards-grid">
+          <div class="title-card-item">
+            <button class="heart-btn" onclick="toggleHeart(this)" title="Like">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </button>
+            <img
+              src="https://lh3.googleusercontent.com/d/1jkCK8IVXLtUSOVi8n6_FwT6eAkMcJDw2"
+              alt="Title Card"
+            />
+          </div>
+
+          <div class="title-card-item">
+            <button class="heart-btn" onclick="toggleHeart(this)" title="Like">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </button>
+            <img
+              src="https://lh3.googleusercontent.com/d/1RXTmgzdQEgcVZS_bMVtwBa_cNx_OiWIp"
+              alt="Title Card"
+            />
+          </div>
+
+          <div class="title-card-item">
+            <button class="heart-btn" onclick="toggleHeart(this)" title="Like">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </button>
+            <img
+              src="https://lh3.googleusercontent.com/d/1Hus9G08SsUl-wC83F7-RbgujW9T4GC7d"
+              alt="Title Card"
+            />
+          </div>
+
+          <div class="title-card-item">
+            <button class="heart-btn" onclick="toggleHeart(this)" title="Like">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </button>
+            <img
+              src="https://lh3.googleusercontent.com/d/1VkFB5AsdsdGRpDqynEuhsYC1cry57OuI"
+              alt="Title Card"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Motion Videos -->
+    <section class="bg-alt">
+      <div class="container">
+        <div class="section-header-wrap">
+          <h2 class="section-title">Videos</h2>
+        </div>
+
+        <div class="videos-stack">
+          <div class="video-item">
+            <div class="video-frame-container">
+              <video controls preload="metadata">
+                <source src="assets/videos/video1.mp4" type="video/mp4" />
+                Your browser does not support playing local video files.
+              </video>
+            </div>
+            <div class="video-meta-bar">
+              <span class="video-title-text">2025 SHOW REEL</span>
+              <button
+                class="heart-btn video-heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-frame-container">
+              <video controls preload="metadata">
+                <source src="assets/videos/video2.mp4" type="video/mp4" />
+                Your browser does not support playing local video files.
+              </video>
+            </div>
+            <div class="video-meta-bar">
+              <span class="video-title-text">OPENING BILLBOARD</span>
+              <button
+                class="heart-btn video-heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-frame-container">
+              <video controls preload="metadata">
+                <source src="assets/videos/video3.mp4" type="video/mp4" />
+                Your browser does not support playing local video files.
+              </video>
+            </div>
+            <div class="video-meta-bar">
+              <span class="video-title-text">SEGMENT BUMPER</span>
+              <button
+                class="heart-btn video-heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-frame-container">
+              <video controls preload="metadata">
+                <source src="assets/videos/video4.mp4" type="video/mp4" />
+                Your browser does not support playing local video files.
+              </video>
+            </div>
+            <div class="video-meta-bar">
+              <span class="video-title-text">LOGO TEASER</span>
+              <button
+                class="heart-btn video-heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-frame-container">
+              <video controls preload="metadata">
+                <source src="assets/videos/video5.mp4" type="video/mp4" />
+                Your browser does not support playing local video files.
+              </video>
+            </div>
+            <div class="video-meta-bar">
+              <span class="video-title-text">LOGO ANIMATION</span>
+              <button
+                class="heart-btn video-heart-btn"
+                onclick="toggleHeart(this)"
+                title="Like"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2026 JUAN PROJECT &bull; Designed &amp; Developed by Benzel Delmo.
+      All Rights Reserved.
+    </footer>
+
+    <!-- JavaScript Functionality -->
+    <script>
+      /* Heart Toggle */
+      function toggleHeart(btn) {
+        btn.classList.toggle("liked");
+      }
+
+      /* Poster Carousel Navigation */
+      function scrollCarousel(id, offset) {
+        const carousel = document.getElementById(id);
+        carousel.scrollBy({ left: offset, behavior: "smooth" });
+      }
+
+      /* Non-Overlapping Audio: Pauses all other videos when one starts playing */
+      const allVideos = document.querySelectorAll("video");
+
+      allVideos.forEach((video) => {
+        video.addEventListener("play", () => {
+          allVideos.forEach((otherVideo) => {
+            if (otherVideo !== video) {
+              otherVideo.pause();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
