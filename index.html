@@ -153,14 +153,12 @@
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.85);
         backdrop-filter: saturate(180%) blur(20px);
         -webkit-backdrop-filter: saturate(180%) blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-        z-index: 10050;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        z-index: 1000;
         padding: 1rem 0;
       }
 
@@ -284,7 +282,6 @@
         color: var(--black);
         opacity: 0;
         animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-        animation-play-state: paused;
       }
 
       .hero h1.hero-title br.mobile-break {
@@ -317,7 +314,6 @@
         letter-spacing: -0.01em;
         opacity: 0;
         animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
-        animation-play-state: paused;
       }
 
       /* Hero Equal-Sided Grid Layout */
@@ -394,26 +390,14 @@
       .domino-1 {
         animation: floatInSequence 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s
           forwards;
-        animation-play-state: paused;
       }
       .domino-2 {
         animation: floatInSequence 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s
           forwards;
-        animation-play-state: paused;
       }
       .domino-3 {
         animation: floatInSequence 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.75s
           forwards;
-        animation-play-state: paused;
-      }
-
-      body.site-opened .hero h1.hero-title,
-      body.site-opened .hero-subtitle,
-      body.site-opened .hero-logos-ticker,
-      body.site-opened .domino-1,
-      body.site-opened .domino-2,
-      body.site-opened .domino-3 {
-        animation-play-state: running;
       }
 
       .stat-value {
@@ -474,7 +458,6 @@
         padding: 0.75rem 0;
         opacity: 0;
         animation: flowyUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
-        animation-play-state: paused;
         -webkit-mask-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0) 0%,
@@ -1636,165 +1619,6 @@
         visibility: visible;
       }
 
-      #pageShell {
-        opacity: 0;
-        visibility: hidden;
-        transform: scale(0.98);
-        transition:
-          opacity 0.4s ease,
-          transform 0.4s ease,
-          visibility 0.4s ease;
-        padding-top: 5rem;
-      }
-      #pageShell,
-      #pageShell * {
-        animation-play-state: paused !important;
-      }
-      body.site-opened #pageShell {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
-      }
-      body.site-opened #pageShell,
-      body.site-opened #pageShell * {
-        animation-play-state: running !important;
-      }
-      body.no-scroll {
-        overflow: hidden;
-      }
-
-      .welcome-overlay {
-        position: fixed;
-        bottom: 1.5rem;
-        left: 1.5rem;
-        width: min(380px, calc(100% - 3rem));
-        max-width: 420px;
-        z-index: 10010;
-        opacity: 0;
-        visibility: hidden;
-        transition:
-          opacity 0.25s ease,
-          transform 0.25s ease,
-          visibility 0.25s ease;
-        transform: translateY(24px);
-      }
-      .welcome-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      .welcome-card {
-        position: relative;
-        background: linear-gradient(180deg, #ffffff 0%, #f9fff7 100%);
-        border-radius: 22px;
-        border: 1px solid rgba(47, 242, 158, 0.18);
-        padding: 1.25rem 1.25rem 1.1rem;
-        box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12);
-        text-align: left;
-      }
-      .welcome-close {
-        position: absolute;
-        top: 0.9rem;
-        right: 0.9rem;
-        width: 2.2rem;
-        height: 2.2rem;
-        display: grid;
-        place-items: center;
-        background: rgba(0, 0, 0, 0.06);
-        color: var(--black);
-        border-radius: 50%;
-      }
-      @media (max-width: 768px) {
-        .welcome-overlay {
-          left: 50%;
-          right: auto;
-          bottom: 1rem;
-          width: min(92vw, 420px);
-          transform: translate(-50%, 24px);
-        }
-        .welcome-overlay.active {
-          transform: translate(-50%, 0);
-        }
-      }
-      .welcome-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.55rem 1rem;
-        margin-bottom: 1rem;
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        background: rgba(47, 242, 158, 0.14);
-        color: var(--mint);
-        border-radius: 999px;
-      }
-      .welcome-card h2 {
-        margin: 0.75rem 0 0.8rem;
-        font-size: clamp(1.8rem, 3vw, 2.6rem);
-        line-height: 1.05;
-      }
-      .welcome-card p {
-        margin: 0 auto 1.5rem;
-        max-width: 40rem;
-        color: var(--gray-dark);
-        line-height: 1.7;
-      }
-      .welcome-features {
-        display: grid;
-        gap: 0.75rem;
-        margin-bottom: 1.6rem;
-        text-align: left;
-      }
-      .welcome-feature {
-        display: flex;
-        gap: 0.9rem;
-        align-items: center;
-        color: var(--gray-dark);
-        font-size: 0.98rem;
-        opacity: 0;
-        transform: translateY(24px);
-        animation: floatInFeature 0.55s ease-out forwards;
-      }
-      .welcome-feature:nth-child(1) {
-        animation-delay: 0.18s;
-      }
-      .welcome-feature:nth-child(2) {
-        animation-delay: 0.32s;
-      }
-      .welcome-feature:nth-child(3) {
-        animation-delay: 0.46s;
-      }
-      .welcome-feature strong {
-        color: var(--black);
-      }
-      .check-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        background: rgba(47, 242, 158, 0.18);
-        color: var(--mint);
-        font-size: 1rem;
-      }
-      @keyframes floatInFeature {
-        0% {
-          opacity: 0;
-          transform: translateY(24px);
-        }
-        55% {
-          opacity: 1;
-          transform: translateY(-6px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
       .cart-sidebar {
         position: fixed;
         top: 0;
@@ -2004,1075 +1828,999 @@
     <!-- Toast Notifications Container -->
     <div id="toast-container"></div>
 
-    <div
-      id="welcomeOverlay"
-      class="welcome-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="welcomeHeading"
-    >
-      <div class="welcome-card">
-        <button
-          class="modal-close welcome-close"
-          onclick="closeWelcomeModal()"
-          aria-label="Close welcome popup"
+    <!-- Header Navigation -->
+    <header>
+      <div class="container nav-content">
+        <div
+          class="logo-top-btn"
+          id="topLogoBtn"
+          onclick="triggerDominoNumbers(event)"
+          title="JUAN PROJECT"
         >
-          <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
+          <span>JUAN PROJECT</span>
+        </div>
+        <button class="cart-btn-nav" onclick="toggleCart()">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          Cart <span class="cart-badge" id="cartCount">0</span>
         </button>
-        <div class="welcome-badge">NEW UPDATES</div>
-        <h2 id="welcomeHeading">3 New Updates</h2>
-        <p>
-          Portfolio, print order flow, and Union Bank QR payment are now live.
-        </p>
-        <div class="welcome-features">
-          <div class="welcome-feature">
-            <span class="check-icon">✓</span
-            ><span><strong>Portfolio</strong> work samples and services.</span>
+      </div>
+    </header>
+
+    <!-- Full Landing Hero Section -->
+    <section class="hero container">
+      <h1 class="hero-title">
+        Crafting Visual<br class="mobile-break" />
+        Excellence
+      </h1>
+
+      <p class="hero-subtitle">
+        Minimalist, high-end broadcast materials and digital services designed
+        for modern creators and networks.
+      </p>
+
+      <!-- Hero 3 Equal-Sided Stat Boxes -->
+      <div class="stats-grid">
+        <div class="stat-item domino-1">
+          <div class="stat-value">
+            <span class="counter" data-target="3">0</span
+            ><span class="stat-plus">+</span>
           </div>
-          <div class="welcome-feature">
-            <span class="check-icon">✓</span
-            ><span><strong>Print order</strong> invoice flow from cart.</span>
+          <div class="stat-label">Years in Blender</div>
+        </div>
+
+        <div class="stat-item domino-2">
+          <div class="stat-value">
+            <span class="counter" data-target="50">0</span
+            ><span class="stat-plus">+</span>
           </div>
-          <div class="welcome-feature">
-            <span class="check-icon">✓</span
-            ><span><strong>QR payment</strong> Union Bank local checkout.</span>
+          <div class="stat-label">Broadcast Packages</div>
+        </div>
+
+        <div class="stat-item domino-3">
+          <div class="stat-value">
+            <span class="counter" data-target="250">0</span
+            ><span class="stat-plus">+</span>
           </div>
+          <div class="stat-label">Deliverables</div>
         </div>
       </div>
-    </div>
 
-    <div id="pageShell" class="page-shell">
-      <!-- Header Navigation -->
-      <header>
-        <div class="container nav-content">
-          <div
-            class="logo-top-btn"
-            id="topLogoBtn"
-            onclick="triggerDominoNumbers(event)"
-            title="JUAN PROJECT"
-          >
-            <span>JUAN PROJECT</span>
-          </div>
-          <button class="cart-btn-nav" onclick="toggleCart()">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            Cart <span class="cart-badge" id="cartCount">0</span>
-          </button>
-        </div>
-      </header>
-
-      <!-- Full Landing Hero Section -->
-      <section class="hero container">
-        <h1 class="hero-title">
-          Crafting Visual<br class="mobile-break" />
-          Excellence
-        </h1>
-
-        <p class="hero-subtitle">
-          Minimalist, high-end broadcast materials and digital services designed
-          for modern creators and networks.
-        </p>
-
-        <!-- Hero 3 Equal-Sided Stat Boxes -->
-        <div class="stats-grid">
-          <div class="stat-item domino-1">
-            <div class="stat-value">
-              <span class="counter" data-target="3">0</span
-              ><span class="stat-plus">+</span>
-            </div>
-            <div class="stat-label">Years in Blender</div>
-          </div>
-
-          <div class="stat-item domino-2">
-            <div class="stat-value">
-              <span class="counter" data-target="50">0</span
-              ><span class="stat-plus">+</span>
-            </div>
-            <div class="stat-label">Broadcast Packages</div>
-          </div>
-
-          <div class="stat-item domino-3">
-            <div class="stat-value">
-              <span class="counter" data-target="250">0</span
-              ><span class="stat-plus">+</span>
-            </div>
-            <div class="stat-label">Deliverables</div>
-          </div>
-        </div>
-
-        <!-- Hero 12 Logo Placeholders (16:9 Marquee Ticker) -->
-        <div class="hero-logos-ticker">
-          <div class="ticker-track">
-            <!-- Primary 12 Logo Loop -->
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO1.png"
-                alt="LOGO1"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 01</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO2.png"
-                alt="LOGO2"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 02</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO3.png"
-                alt="LOGO3"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 03</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO4.png"
-                alt="LOGO4"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 04</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO5.png"
-                alt="LOGO5"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 05</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO6.png"
-                alt="LOGO6"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 06</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO7.png"
-                alt="LOGO7"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 07</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO8.png"
-                alt="LOGO8"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 08</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO9.png"
-                alt="LOGO9"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 09</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO10.png"
-                alt="LOGO10"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 10</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO11.png"
-                alt="LOGO11"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 11</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO12.png"
-                alt="LOGO12"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 12</span>';
-                "
-              />
-            </div>
-            <!-- Duplicated Set for Seamless Scroll -->
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO1.png"
-                alt="LOGO1"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 01</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO2.png"
-                alt="LOGO2"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 02</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO3.png"
-                alt="LOGO3"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 03</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO4.png"
-                alt="LOGO4"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 04</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO5.png"
-                alt="LOGO5"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 05</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO6.png"
-                alt="LOGO6"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 06</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO7.png"
-                alt="LOGO7"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 07</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO8.png"
-                alt="LOGO8"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 08</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO9.png"
-                alt="LOGO9"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 09</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO10.png"
-                alt="LOGO10"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 10</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO11.png"
-                alt="LOGO11"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 11</span>';
-                "
-              />
-            </div>
-            <div class="ticker-logo-item">
-              <img
-                src="assets/logos/LOGO12.png"
-                alt="LOGO12"
-                onerror="
-                  this.onerror = null;
-                  this.parentNode.innerHTML =
-                    '<span class=\'logo-fallback\'>LOGO 12</span>';
-                "
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Centered Side-by-Side Dual Action Buttons -->
-        <div class="hero-actions">
-          <a href="#packages" class="btn-hero-secondary">Explore Packages</a>
-          <a href="portfolio.html" class="btn-hero-primary">
-            See Portfolio
-            <svg viewBox="0 0 24 24">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </section>
-
-      <!-- Packages Section -->
-      <section class="bg-light" id="packages">
-        <div class="container">
-          <h2>Select a Package</h2>
-          <div class="packages-grid">
-            <!-- Bronze -->
-            <div class="package-card">
-              <div class="pkg-badge-title">BRONZE Package</div>
-              <div class="pkg-price">₱5,999</div>
-              <div class="pkg-discount">Original Price ₱6,300.00</div>
-              <div class="save-badge">SAVE ₱300!</div>
-
-              <div class="pkg-divider"></div>
-              <div class="pkg-includes-title">Includes:</div>
-              <ul class="pkg-includes">
-                <li>STUDIO</li>
-                <li>LOWERTHIRDS</li>
-                <li>LOGO ANIMATION</li>
-                <li>STINGER</li>
-              </ul>
-              <button
-                class="btn btn-primary"
-                onclick="addToCart('Bronze Package', 5999)"
-              >
-                Add to Cart
-              </button>
-            </div>
-
-            <!-- Silver -->
-            <div class="package-card">
-              <div class="pkg-badge-title">SILVER Package</div>
-              <div class="pkg-price">₱7,899</div>
-              <div class="pkg-discount">Original Price ₱8,300.00</div>
-              <div class="save-badge">SAVE ₱400!</div>
-
-              <div class="pkg-divider"></div>
-              <div class="pkg-includes-title">Includes:</div>
-              <ul class="pkg-includes">
-                <li>STUDIO</li>
-                <li>LOWERTHIRDS</li>
-                <li>LOGO ANIMATION</li>
-                <li>HEADLINE BUMPER</li>
-                <li>LIVE BUMPER</li>
-                <li>STINGER</li>
-                <li>UP NEXT</li>
-                <li>CHANNEL IDENT</li>
-              </ul>
-              <button
-                class="btn btn-primary"
-                onclick="addToCart('Silver Package', 7899)"
-              >
-                Add to Cart
-              </button>
-            </div>
-
-            <!-- Gold -->
-            <div class="package-card">
-              <div class="pkg-badge-title">GOLD Package</div>
-              <div class="pkg-price">₱9,999</div>
-              <div class="pkg-discount">Original Price ₱10,600.00</div>
-              <div class="save-badge">SAVE ₱600!</div>
-
-              <div class="pkg-divider"></div>
-              <div class="pkg-includes-title">Includes:</div>
-              <ul class="pkg-includes">
-                <li>STUDIO</li>
-                <li>LOWERTHIRDS</li>
-                <li>LOGO ANIMATION</li>
-                <li>STUDIO MONTAGE</li>
-                <li>HEADLINE TEMPLATE</li>
-                <li>LIVE BUMPER</li>
-                <li>STINGER</li>
-                <li>UP NEXT BUMPER</li>
-                <li>CHANNEL IDENT</li>
-                <li>SPORTS / ENTERTAINMENT</li>
-                <li>TITLE CARD / POSTER CARD</li>
-                <li>LIVE FRAME</li>
-              </ul>
-              <button
-                class="btn btn-primary"
-                onclick="addToCart('Gold Package', 9999)"
-              >
-                Add to Cart
-              </button>
-            </div>
-
-            <!-- Platinum -->
-            <div class="package-card">
-              <div class="pkg-badge-title">PLATINUM Package</div>
-              <div class="pkg-price">₱10,799</div>
-              <div class="pkg-discount">Original Price ₱12,300.00</div>
-              <div class="save-badge">SAVE ₱1,500!</div>
-
-              <div class="pkg-divider"></div>
-              <div class="pkg-includes-title">Includes:</div>
-              <ul class="pkg-includes">
-                <li>STUDIO</li>
-                <li>LOWERTHIRDS</li>
-                <li>LOGO ANIMATION</li>
-                <li>STUDIO MONTAGE</li>
-                <li>STUDIO FLIP</li>
-                <li>HEADLINE TEMPLATE</li>
-                <li>LIVE BUMPER</li>
-                <li>STINGER</li>
-                <li>UP NEXT BUMPER</li>
-                <li>CHANNEL IDENT</li>
-                <li>SPORTS BUMPER</li>
-                <li>ENTERTAINMENT BUMPER</li>
-                <li>TITLE CARD</li>
-                <li>POSTER CARD</li>
-                <li>LIVE FRAME</li>
-              </ul>
-              <button
-                class="btn btn-primary"
-                onclick="addToCart('Platinum Package', 10799)"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Full Service List Table -->
-      <section class="services-section container" id="full-pricelist">
-        <h2>Broadcast Materials Full Pricelist</h2>
-        <div class="table-wrapper">
-          <div class="table-container">
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th style="text-align: left">Deliverables</th>
-                    <th style="text-align: center">Standalone Pricing</th>
-                    <th style="width: 80px; text-align: center">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><div class="t-name">LOGO ANIMATION</div></td>
-                    <td class="t-price">₱1,500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Logo Animation', 1500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">LOWERTHIRDS</div></td>
-                    <td class="t-price">₱1,500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Lowerthirds', 1500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">OPENING BILLBOARD</div></td>
-                    <td class="t-price">₱1,500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Opening Billboard', 1500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">STUDIO</div></td>
-                    <td class="t-price">₱3,000.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Studio', 3000)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">STUDIO MONTAGE</div></td>
-                    <td class="t-price">₱800.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Studio Montage', 800)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">STUDIO FLIP</div></td>
-                    <td class="t-price">₱800.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Studio Flip', 800)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">HEADLINE TEMPLATE</div></td>
-                    <td class="t-price">₱800.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Headline Template', 800)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">TITLE CARD</div></td>
-                    <td class="t-price">₱400.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Title Card', 400)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">POSTER CARD</div></td>
-                    <td class="t-price">₱400.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Poster Card', 400)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">STINGER</div></td>
-                    <td class="t-price">₱500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Stinger', 500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">CHANNEL IDENT</div></td>
-                    <td class="t-price">₱500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Channel Ident', 500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">UP NEXT BUMPER</div></td>
-                    <td class="t-price">₱500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Up Next Bumper', 500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">SPORTS BUMPER</div></td>
-                    <td class="t-price">₱500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Sports Bumper', 500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">ENTERTAINMENT BUMPER</div></td>
-                    <td class="t-price">₱500.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Entertainment Bumper', 500)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div class="t-name">LIVE FRAME</div></td>
-                    <td class="t-price">₱300.00</td>
-                    <td>
-                      <button
-                        class="btn-icon"
-                        onclick="addToCart('Live Frame', 300)"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12 4v16m8-8H4" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="table-footer-row">
-                    <td>Total Value</td>
-                    <td class="t-price" style="font-size: 1.05rem">
-                      ₱13,500.00
-                    </td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="disclaimer-banner">
-              Discounts are applicable to all packages and may vary depending on
-              the selected bundle.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Payment Cards Deck Section -->
-      <section class="bg-light payment-section" id="payment-section">
-        <div class="container">
-          <h2>Payment Options</h2>
-          <p>
-            Swipe or click deck to shuffle payment options. Tap card button to
-            view QR code.
-          </p>
-
-          <div class="cards-deck-container" id="cardsDeck">
-            <!-- Local Payment -->
-            <div
-              class="payment-card-item card-unionbank top-card"
-              id="card-unionbank"
-            >
-              <span class="card-shine" aria-hidden="true"></span>
-              <div class="card-brand-header">
-                <div class="card-type-tag">For local payment</div>
-                <div class="card-chip"></div>
-              </div>
-              <div>
-                <div class="card-bank-title">
-                  <img
-                    src="assets/logos/unionbank.png"
-                    alt="UnionBank"
-                    class="card-bank-logo"
-                  />
-                </div>
-              </div>
-              <div class="card-footer-info">
-                <div>
-                  <div style="font-weight: 800; font-size: 1.05rem">
-                    BENZEL DELMO
-                  </div>
-                </div>
-                <div class="card-actions">
-                  <button
-                    class="card-action-btn"
-                    onclick="openQRModal('assets/logos/unionbank-qr.png')"
-                  >
-                    Scan QR
-                    <svg viewBox="0 0 24 24" style="width: 14px; height: 14px">
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- International Payment -->
-            <div class="payment-card-item card-wise bottom-card" id="card-wise">
-              <span class="card-shine" aria-hidden="true"></span>
-              <div class="card-brand-header">
-                <div class="card-type-tag">For international payment</div>
-                <div class="card-chip"></div>
-              </div>
-              <div>
-                <div class="card-bank-title">
-                  <img
-                    src="assets/logos/wise.png"
-                    alt="Wise"
-                    class="card-bank-logo"
-                  />
-                </div>
-              </div>
-              <div class="card-footer-info">
-                <div>
-                  <div
-                    style="font-size: 0.72rem; opacity: 0.8; font-weight: 600"
-                  >
-                    ACCOUNT NAME
-                  </div>
-                  <div style="font-weight: 800; font-size: 1.05rem">
-                    JUAN PROJECT
-                  </div>
-                </div>
-                <div class="card-actions">
-                  <button class="card-action-btn" onclick="openQRModal()">
-                    Scan QR
-                    <svg viewBox="0 0 24 24" style="width: 14px; height: 14px">
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- QR Code Expanded Modal -->
-      <div class="qr-modal-overlay" id="qrModalOverlay">
-        <div class="qr-card-expanded">
-          <button
-            class="modal-close"
-            onclick="closeQRModal()"
-            aria-label="Close QR modal"
-          >
-            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-          <h3 style="font-size: 1.4rem; margin-top: 0.2rem">Scan QR Code</h3>
-
-          <div class="qr-code-box">
+      <!-- Hero 12 Logo Placeholders (16:9 Marquee Ticker) -->
+      <div class="hero-logos-ticker">
+        <div class="ticker-track">
+          <!-- Primary 12 Logo Loop -->
+          <div class="ticker-logo-item">
             <img
-              id="qrCodeImage"
-              src=""
-              alt="QR Code"
-              class="qr-code-img"
-              onerror="this.style.display = 'none'"
+              src="assets/logos/LOGO1.png"
+              alt="LOGO1"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 01</span>';
+              "
             />
-            <svg
-              id="qrCodePlaceholder"
-              class="qr-code-placeholder"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h1.5v1.5H15zM18 15h1.5v1.5H18zM15 18h1.5v1.5H15zM19.5 19.5H21V21h-1.5z"
-              />
-            </svg>
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO2.png"
+              alt="LOGO2"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 02</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO3.png"
+              alt="LOGO3"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 03</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO4.png"
+              alt="LOGO4"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 04</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO5.png"
+              alt="LOGO5"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 05</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO6.png"
+              alt="LOGO6"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 06</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO7.png"
+              alt="LOGO7"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 07</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO8.png"
+              alt="LOGO8"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 08</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO9.png"
+              alt="LOGO9"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 09</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO10.png"
+              alt="LOGO10"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 10</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO11.png"
+              alt="LOGO11"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 11</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO12.png"
+              alt="LOGO12"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 12</span>';
+              "
+            />
+          </div>
+          <!-- Duplicated Set for Seamless Scroll -->
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO1.png"
+              alt="LOGO1"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 01</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO2.png"
+              alt="LOGO2"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 02</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO3.png"
+              alt="LOGO3"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 03</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO4.png"
+              alt="LOGO4"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 04</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO5.png"
+              alt="LOGO5"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 05</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO6.png"
+              alt="LOGO6"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 06</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO7.png"
+              alt="LOGO7"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 07</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO8.png"
+              alt="LOGO8"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 08</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO9.png"
+              alt="LOGO9"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 09</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO10.png"
+              alt="LOGO10"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 10</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO11.png"
+              alt="LOGO11"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 11</span>';
+              "
+            />
+          </div>
+          <div class="ticker-logo-item">
+            <img
+              src="assets/logos/LOGO12.png"
+              alt="LOGO12"
+              onerror="
+                this.onerror = null;
+                this.parentNode.innerHTML =
+                  '<span class=\'logo-fallback\'>LOGO 12</span>';
+              "
+            />
           </div>
         </div>
       </div>
 
-      <!-- Invoice Modal -->
-      <div class="invoice-modal-overlay" id="invoiceModalOverlay">
-        <div class="invoice-card" id="invoiceCard">
-          <button
-            class="modal-close"
-            onclick="closeInvoiceModal()"
-            aria-label="Close invoice modal"
-          >
-            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-          <div class="invoice-header">
-            <div>
-              <div style="font-weight: 800; font-size: 1.05rem">
-                JUAN PROJECT
-              </div>
-              <div style="font-size: 0.85rem; color: var(--gray-medium)">
-                Invoice
-              </div>
-            </div>
-            <div
-              id="invoiceMeta"
-              style="
-                text-align: right;
-                font-size: 0.85rem;
-                color: var(--gray-medium);
-              "
-            ></div>
+      <!-- Centered Side-by-Side Dual Action Buttons -->
+      <div class="hero-actions">
+        <a href="#packages" class="btn-hero-secondary">Explore Packages</a>
+        <a href="portfolio.html" class="btn-hero-primary">
+          See Portfolio
+          <svg viewBox="0 0 24 24">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="bg-light" id="packages">
+      <div class="container">
+        <h2>Select a Package</h2>
+        <div class="packages-grid">
+          <!-- Bronze -->
+          <div class="package-card">
+            <div class="pkg-badge-title">BRONZE Package</div>
+            <div class="pkg-price">₱5,999</div>
+            <div class="pkg-discount">Original Price ₱6,300.00</div>
+            <div class="save-badge">SAVE ₱300!</div>
+
+            <div class="pkg-divider"></div>
+            <div class="pkg-includes-title">Includes:</div>
+            <ul class="pkg-includes">
+              <li>STUDIO</li>
+              <li>LOWERTHIRDS</li>
+              <li>LOGO ANIMATION</li>
+              <li>STINGER</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart('Bronze Package', 5999)"
+            >
+              Add to Cart
+            </button>
           </div>
-          <div class="invoice-items" id="invoiceItems"></div>
-          <div
-            class="invoice-row"
-            style="
-              border-top: 1px solid var(--border);
-              padding-top: 0.8rem;
-              margin-top: 0.6rem;
-              font-weight: 800;
-            "
-          >
-            <div>Total</div>
-            <div id="invoiceTotal">₱0.00</div>
+
+          <!-- Silver -->
+          <div class="package-card">
+            <div class="pkg-badge-title">SILVER Package</div>
+            <div class="pkg-price">₱7,899</div>
+            <div class="pkg-discount">Original Price ₱8,300.00</div>
+            <div class="save-badge">SAVE ₱400!</div>
+
+            <div class="pkg-divider"></div>
+            <div class="pkg-includes-title">Includes:</div>
+            <ul class="pkg-includes">
+              <li>STUDIO</li>
+              <li>LOWERTHIRDS</li>
+              <li>LOGO ANIMATION</li>
+              <li>HEADLINE BUMPER</li>
+              <li>LIVE BUMPER</li>
+              <li>STINGER</li>
+              <li>UP NEXT</li>
+              <li>CHANNEL IDENT</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart('Silver Package', 7899)"
+            >
+              Add to Cart
+            </button>
           </div>
-          <div class="invoice-actions">
-            <button class="btn" onclick="saveInvoiceImage()">
-              <svg
-                viewBox="0 0 24 24"
-                style="
-                  width: 14px;
-                  height: 14px;
-                  vertical-align: middle;
-                  margin-right: 6px;
-                "
-              >
-                <path
-                  d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"
-                />
-              </svg>
-              Save as image
+
+          <!-- Gold -->
+          <div class="package-card">
+            <div class="pkg-badge-title">GOLD Package</div>
+            <div class="pkg-price">₱9,999</div>
+            <div class="pkg-discount">Original Price ₱10,600.00</div>
+            <div class="save-badge">SAVE ₱600!</div>
+
+            <div class="pkg-divider"></div>
+            <div class="pkg-includes-title">Includes:</div>
+            <ul class="pkg-includes">
+              <li>STUDIO</li>
+              <li>LOWERTHIRDS</li>
+              <li>LOGO ANIMATION</li>
+              <li>STUDIO MONTAGE</li>
+              <li>HEADLINE TEMPLATE</li>
+              <li>LIVE BUMPER</li>
+              <li>STINGER</li>
+              <li>UP NEXT BUMPER</li>
+              <li>CHANNEL IDENT</li>
+              <li>SPORTS / ENTERTAINMENT</li>
+              <li>TITLE CARD / POSTER CARD</li>
+              <li>LIVE FRAME</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart('Gold Package', 9999)"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Platinum -->
+          <div class="package-card">
+            <div class="pkg-badge-title">PLATINUM Package</div>
+            <div class="pkg-price">₱10,799</div>
+            <div class="pkg-discount">Original Price ₱12,300.00</div>
+            <div class="save-badge">SAVE ₱1,500!</div>
+
+            <div class="pkg-divider"></div>
+            <div class="pkg-includes-title">Includes:</div>
+            <ul class="pkg-includes">
+              <li>STUDIO</li>
+              <li>LOWERTHIRDS</li>
+              <li>LOGO ANIMATION</li>
+              <li>STUDIO MONTAGE</li>
+              <li>STUDIO FLIP</li>
+              <li>HEADLINE TEMPLATE</li>
+              <li>LIVE BUMPER</li>
+              <li>STINGER</li>
+              <li>UP NEXT BUMPER</li>
+              <li>CHANNEL IDENT</li>
+              <li>SPORTS BUMPER</li>
+              <li>ENTERTAINMENT BUMPER</li>
+              <li>TITLE CARD</li>
+              <li>POSTER CARD</li>
+              <li>LIVE FRAME</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart('Platinum Package', 10799)"
+            >
+              Add to Cart
             </button>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Meet / Contact Section -->
-      <section class="meet-section" id="meet-man">
-        <div class="container">
-          <div class="meet-container">
-            <!-- Profile Flip Card -->
-            <div
-              class="flip-card-container"
-              id="profileFlipCard"
-              onclick="toggleProfileCard()"
-            >
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <div class="avatar-green-circle">
-                    <img
-                      src="Delmo-BenzelJohn-Esperanza.jpg"
-                      alt="Benzel Delmo"
-                      onerror="this.style.display = 'none'"
-                    />
-                  </div>
-                  <div class="card-name">Benzel Delmo</div>
-                  <div class="card-email">ws.benzeldelmo@gmail.com</div>
-                  <div class="flip-hint">Tap card to flip ↺</div>
-                </div>
-
-                <div class="flip-card-back">
-                  <div>
-                    <h4
-                      style="
-                        font-size: 1.1rem;
-                        color: var(--white);
-                        margin-bottom: 0.15rem;
-                      "
+    <!-- Full Service List Table -->
+    <section class="services-section container" id="full-pricelist">
+      <h2>Broadcast Materials Full Pricelist</h2>
+      <div class="table-wrapper">
+        <div class="table-container">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th style="text-align: left">Deliverables</th>
+                  <th style="text-align: center">Standalone Pricing</th>
+                  <th style="width: 80px; text-align: center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="t-name">LOGO ANIMATION</div></td>
+                  <td class="t-price">₱1,500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Logo Animation', 1500)"
                     >
-                      Connect With Me
-                    </h4>
-                    <p style="font-size: 0.75rem; color: var(--mint)">
-                      JUAN PROJECT
-                    </p>
-                  </div>
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">LOWERTHIRDS</div></td>
+                  <td class="t-price">₱1,500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Lowerthirds', 1500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">OPENING BILLBOARD</div></td>
+                  <td class="t-price">₱1,500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Opening Billboard', 1500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">STUDIO</div></td>
+                  <td class="t-price">₱3,000.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Studio', 3000)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">STUDIO MONTAGE</div></td>
+                  <td class="t-price">₱800.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Studio Montage', 800)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">STUDIO FLIP</div></td>
+                  <td class="t-price">₱800.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Studio Flip', 800)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">HEADLINE TEMPLATE</div></td>
+                  <td class="t-price">₱800.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Headline Template', 800)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">TITLE CARD</div></td>
+                  <td class="t-price">₱400.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Title Card', 400)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">POSTER CARD</div></td>
+                  <td class="t-price">₱400.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Poster Card', 400)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">STINGER</div></td>
+                  <td class="t-price">₱500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Stinger', 500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">CHANNEL IDENT</div></td>
+                  <td class="t-price">₱500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Channel Ident', 500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">UP NEXT BUMPER</div></td>
+                  <td class="t-price">₱500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Up Next Bumper', 500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">SPORTS BUMPER</div></td>
+                  <td class="t-price">₱500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Sports Bumper', 500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">ENTERTAINMENT BUMPER</div></td>
+                  <td class="t-price">₱500.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Entertainment Bumper', 500)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="t-name">LIVE FRAME</div></td>
+                  <td class="t-price">₱300.00</td>
+                  <td>
+                    <button
+                      class="btn-icon"
+                      onclick="addToCart('Live Frame', 300)"
+                    >
+                      <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-footer-row">
+                  <td>Total Value</td>
+                  <td class="t-price" style="font-size: 1.05rem">₱13,500.00</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="disclaimer-banner">
+            Discounts are applicable to all packages and may vary depending on
+            the selected bundle.
+          </div>
+        </div>
+      </div>
+    </section>
 
-                  <ul class="social-links-list">
-                    <li class="social-link-item">
-                      <a href="mailto:ws.benzeldelmo@gmail.com" target="_blank">
-                        <svg viewBox="0 0 24 24">
-                          <path
-                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                          />
-                          <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        <span>Email</span>
-                      </a>
-                    </li>
-                    <li class="social-link-item">
-                      <a
-                        href="https://www.facebook.com/benzeldelmo.421"
-                        target="_blank"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path
-                            d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                          />
-                        </svg>
-                        <span>Facebook</span>
-                      </a>
-                    </li>
-                    <li class="social-link-item">
-                      <a
-                        href="https://www.instagram.com/mercedws_benz/"
-                        target="_blank"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <rect
-                            x="2"
-                            y="2"
-                            width="20"
-                            height="20"
-                            rx="5"
-                            ry="5"
-                          />
-                          <path
-                            d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                          />
-                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                        </svg>
-                        <span>Instagram</span>
-                      </a>
-                    </li>
-                    <li class="social-link-item">
-                      <a
-                        href="https://www.tiktok.com/@juanprojectt"
-                        target="_blank"
-                      >
-                        <svg viewBox="0 0 24 24">
-                          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-                        </svg>
-                        <span>TikTok</span>
-                      </a>
-                    </li>
-                  </ul>
+    <!-- Payment Cards Deck Section -->
+    <section class="bg-light payment-section" id="payment-section">
+      <div class="container">
+        <h2>Payment Options</h2>
+        <p>
+          Swipe or click deck to shuffle payment options. Tap card button to
+          view QR code.
+        </p>
 
-                  <div style="font-size: 0.7rem; color: var(--gray-medium)">
-                    Tap anywhere to flip back
-                  </div>
-                </div>
+        <div class="cards-deck-container" id="cardsDeck">
+          <!-- Local Payment -->
+          <div
+            class="payment-card-item card-unionbank top-card"
+            id="card-unionbank"
+          >
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-brand-header">
+              <div class="card-type-tag">For local payment</div>
+              <div class="card-chip"></div>
+            </div>
+            <div>
+              <div class="card-bank-title">
+                <img
+                  src="assets/logos/unionbank.png"
+                  alt="UnionBank"
+                  class="card-bank-logo"
+                />
               </div>
             </div>
-
-            <div class="bio-content">
-              <div class="bio-subtitle">MEET THE MAN BEHIND</div>
-
-              <div class="highlight-brand-wrap">
-                <span class="highlight-brand-text">JUAN PROJECT</span>
+            <div class="card-footer-info">
+              <div>
+                <div style="font-weight: 800; font-size: 1.05rem">
+                  BENZEL DELMO
+                </div>
               </div>
+              <div class="card-actions">
+                <button
+                  class="card-action-btn"
+                  onclick="openQRModal('assets/logos/unionbank-qr.png')"
+                >
+                  Scan QR
+                  <svg viewBox="0 0 24 24" style="width: 14px; height: 14px">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
 
-              <p class="bio-text">
-                An 18-year-old BSIT student from Batangas State University – The
-                National Engineering University, Alangilan Campus, passionate
-                about multimedia editing, motion graphics, web design, and
-                creating meaningful digital experiences.
-              </p>
+          <!-- International Payment -->
+          <div class="payment-card-item card-wise bottom-card" id="card-wise">
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-brand-header">
+              <div class="card-type-tag">For international payment</div>
+              <div class="card-chip"></div>
+            </div>
+            <div>
+              <div class="card-bank-title">
+                <img
+                  src="assets/logos/wise.png"
+                  alt="Wise"
+                  class="card-bank-logo"
+                />
+              </div>
+            </div>
+            <div class="card-footer-info">
+              <div>
+                <div style="font-size: 0.72rem; opacity: 0.8; font-weight: 600">
+                  ACCOUNT NAME
+                </div>
+                <div style="font-weight: 800; font-size: 1.05rem">
+                  JUAN PROJECT
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="card-action-btn" onclick="openQRModal()">
+                  Scan QR
+                  <svg viewBox="0 0 24 24" style="width: 14px; height: 14px">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Site Footer -->
-      <footer class="site-footer">
-        &copy; 2026 JUAN PROJECT • Designed & Developed by Benzel Delmo. All
-        Rights Reserved.
-      </footer>
+    <!-- QR Code Expanded Modal -->
+    <div class="qr-modal-overlay" id="qrModalOverlay">
+      <div class="qr-card-expanded">
+        <button
+          class="modal-close"
+          onclick="closeQRModal()"
+          aria-label="Close QR modal"
+        >
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <h3 style="font-size: 1.4rem; margin-top: 0.2rem">Scan QR Code</h3>
+
+        <div class="qr-code-box">
+          <img
+            id="qrCodeImage"
+            src=""
+            alt="QR Code"
+            class="qr-code-img"
+            onerror="this.style.display = 'none'"
+          />
+          <svg
+            id="qrCodePlaceholder"
+            class="qr-code-placeholder"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h1.5v1.5H15zM18 15h1.5v1.5H18zM15 18h1.5v1.5H15zM19.5 19.5H21V21h-1.5z"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
-    <!-- end pageShell -->
+
+    <!-- Invoice Modal -->
+    <div class="invoice-modal-overlay" id="invoiceModalOverlay">
+      <div class="invoice-card" id="invoiceCard">
+        <button
+          class="modal-close"
+          onclick="closeInvoiceModal()"
+          aria-label="Close invoice modal"
+        >
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="invoice-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem">JUAN PROJECT</div>
+            <div style="font-size: 0.85rem; color: var(--gray-medium)">
+              Invoice
+            </div>
+          </div>
+          <div
+            id="invoiceMeta"
+            style="
+              text-align: right;
+              font-size: 0.85rem;
+              color: var(--gray-medium);
+            "
+          ></div>
+        </div>
+        <div class="invoice-items" id="invoiceItems"></div>
+        <div
+          class="invoice-row"
+          style="
+            border-top: 1px solid var(--border);
+            padding-top: 0.8rem;
+            margin-top: 0.6rem;
+            font-weight: 800;
+          "
+        >
+          <div>Total</div>
+          <div id="invoiceTotal">₱0.00</div>
+        </div>
+        <div class="invoice-actions">
+          <button class="btn" onclick="saveInvoiceImage()">
+            <svg
+              viewBox="0 0 24 24"
+              style="
+                width: 14px;
+                height: 14px;
+                vertical-align: middle;
+                margin-right: 6px;
+              "
+            >
+              <path
+                d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"
+              />
+            </svg>
+            Save as image
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meet / Contact Section -->
+    <section class="meet-section" id="meet-man">
+      <div class="container">
+        <div class="meet-container">
+          <!-- Profile Flip Card -->
+          <div
+            class="flip-card-container"
+            id="profileFlipCard"
+            onclick="toggleProfileCard()"
+          >
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="avatar-green-circle">
+                  <img
+                    src="Delmo-BenzelJohn-Esperanza.jpg"
+                    alt="Benzel Delmo"
+                    onerror="this.style.display = 'none'"
+                  />
+                </div>
+                <div class="card-name">Benzel Delmo</div>
+                <div class="card-email">ws.benzeldelmo@gmail.com</div>
+                <div class="flip-hint">Tap card to flip ↺</div>
+              </div>
+
+              <div class="flip-card-back">
+                <div>
+                  <h4
+                    style="
+                      font-size: 1.1rem;
+                      color: var(--white);
+                      margin-bottom: 0.15rem;
+                    "
+                  >
+                    Connect With Me
+                  </h4>
+                  <p style="font-size: 0.75rem; color: var(--mint)">
+                    JUAN PROJECT
+                  </p>
+                </div>
+
+                <ul class="social-links-list">
+                  <li class="social-link-item">
+                    <a href="mailto:ws.benzeldelmo@gmail.com" target="_blank">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                      <span>Email</span>
+                    </a>
+                  </li>
+                  <li class="social-link-item">
+                    <a
+                      href="https://www.facebook.com/benzeldelmo.421"
+                      target="_blank"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                        />
+                      </svg>
+                      <span>Facebook</span>
+                    </a>
+                  </li>
+                  <li class="social-link-item">
+                    <a
+                      href="https://www.instagram.com/mercedws_benz/"
+                      target="_blank"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <rect
+                          x="2"
+                          y="2"
+                          width="20"
+                          height="20"
+                          rx="5"
+                          ry="5"
+                        />
+                        <path
+                          d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                        />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                      </svg>
+                      <span>Instagram</span>
+                    </a>
+                  </li>
+                  <li class="social-link-item">
+                    <a
+                      href="https://www.tiktok.com/@juanprojectt"
+                      target="_blank"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                      </svg>
+                      <span>TikTok</span>
+                    </a>
+                  </li>
+                </ul>
+
+                <div style="font-size: 0.7rem; color: var(--gray-medium)">
+                  Tap anywhere to flip back
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bio-content">
+            <div class="bio-subtitle">MEET THE MAN BEHIND</div>
+
+            <div class="highlight-brand-wrap">
+              <span class="highlight-brand-text">JUAN PROJECT</span>
+            </div>
+
+            <p class="bio-text">
+              An 18-year-old BSIT student from Batangas State University – The
+              National Engineering University, Alangilan Campus, passionate
+              about multimedia editing, motion graphics, web design, and
+              creating meaningful digital experiences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      &copy; 2026 JUAN PROJECT • Designed & Developed by Benzel Delmo. All
+      Rights Reserved.
+    </footer>
 
     <!-- Modals & Overlay -->
     <div class="overlay" id="overlay" onclick="closeModals()"></div>
@@ -3181,35 +2929,8 @@
         }
       }
 
-      const WELCOME_STORAGE_KEY = "juanproject_welcome_shown";
-
-      function initializePage() {
-        document.body.classList.add("site-opened");
-        triggerDominoNumbers(null);
-      }
-
-      function openWelcomeModal() {
-        document.getElementById("welcomeOverlay").classList.add("active");
-        document.body.classList.remove("site-opened");
-        document.body.classList.add("no-scroll");
-      }
-
-      function closeWelcomeModal() {
-        const welcomeOverlay = document.getElementById("welcomeOverlay");
-        welcomeOverlay.classList.remove("active");
-        localStorage.setItem(WELCOME_STORAGE_KEY, "true");
-        document.body.classList.remove("no-scroll");
-        requestAnimationFrame(() => initializePage());
-      }
-
       window.addEventListener("DOMContentLoaded", () => {
-        const welcomeOverlay = document.getElementById("welcomeOverlay");
-        if (localStorage.getItem(WELCOME_STORAGE_KEY)) {
-          welcomeOverlay.classList.remove("active");
-          initializePage();
-        } else {
-          openWelcomeModal();
-        }
+        triggerDominoNumbers(null);
       });
 
       function showToast(message, type = "success") {
