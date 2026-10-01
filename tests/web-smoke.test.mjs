@@ -33,3 +33,14 @@ test("Web remains a discovery and quick-pricing surface", () => {
   assert.match(html, /Online Flyers:/);
   assert.match(html, /Ordering and client account tools now live in the dedicated Online experience/);
 });
+
+
+test("Web quick pricelist reads the Workspace-managed Supabase catalog", () => {
+  assert.match(html, /id="webPackagesGrid"/);
+  assert.match(html, /id="webPricelistBody"/);
+  assert.match(html, /function loadWebCatalog\(\)/);
+  assert.match(html, /catalog_packages\?select=/);
+  assert.match(html, /catalog_package_items\?select=/);
+  assert.match(html, /catalog_services\?select=/);
+  assert.match(html, /loadWebCatalog\(\);/);
+});
