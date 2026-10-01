@@ -1,0 +1,35 @@
+name: Web Smoke Tests
+
+on:
+  push:
+    branches:
+      - workspace-web-flyers-2026-10-01
+      - main
+  pull_request:
+
+jobs:
+  test-web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Extract and syntax-check inline scripts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path("index.html").read_text(encoding="utf-8")
+          scripts = re.findall(r'<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>', html, flags=re.S|re.I)
+          if not scripts:
+              raise SystemExit("No inline scripts found")
+          out = Path("/tmp/juan-web-inline")
+          out.mkdir(exist_ok=True)
+          for i, script in enumerate(scripts):
+              (out / f"inline-{i}.js").write_text(script, encoding="utf-8")
+          PY
+          for file in /tmp/juan-web-inline/*.js; do node --check "$file"; done
+      - name: Run Web smoke tests
+        run: node --test tests/web-smoke.test.mjs
